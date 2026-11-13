@@ -52,10 +52,11 @@ jobs:
         with:
           name: encrypted-secrets-zip
 
-      - name: Load Secrets
+      - name: Decrypt and Mask Secrets
         uses: ./.github/actions/decrypt-secrets
         with:
           zip_password: ${{ secrets.ZIP_PASSWORD }}
+          zip_path: secrets.zip
 
       - name: Finalize and Cleanup zip/json
         if: always() # Run even if previous steps fail
